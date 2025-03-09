@@ -16,7 +16,7 @@ data = pd.read_csv("data.csv")
 # print(data.describe())
 # print(data.info())
 
-x = data.iloc[:, 0:4].values
+x = data.iloc[:, 0:3].values
 y = data.iloc[:, -1].values
 
 # taking care of missing data
@@ -49,7 +49,9 @@ print(data)
 
 Sc = StandardScaler()
 x_train, x_test, y_train, y_test = train_test_split(x,y, test_size=0.2, random_state=1)
+x_train = x_train.astype(float)
+x_test = x_test.astype(float)
 x_train[0:,3:] = Sc.fit_transform(x_train[0:,3:])
-x_test[0:,3:] = Sc.fit_transform(x_test[0:,3:])
+x_test[0:,3:] = Sc.transform(x_test[0:,3:])
 print(x_train)
 
